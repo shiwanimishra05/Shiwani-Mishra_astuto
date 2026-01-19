@@ -52,8 +52,28 @@ def first_stable_character(s):
         None
     """
     # TODO: Implement your solution here
-    pass
-
+    char_count = {}
+    for char in s:
+        char_count[char] = char_count.get(char, 0) + 1
+    
+    char_positions = {}
+    for i, char in enumerate(s):
+        if char not in char_positions:
+            char_positions[char] = [i, i]
+        else:
+            char_positions[char][1] = i
+    
+    for i, char in enumerate(s):
+        if char_count[char] >= 2: 
+            first_pos, last_pos = char_positions[char]
+          
+            if i == first_pos:
+            
+                if last_pos - first_pos + 1 == char_count[char]:
+                    return char
+    
+    return None
+    
 
 if __name__ == "__main__":
     # Test your solution here
